@@ -34,7 +34,7 @@ func FindPlayers(c *gin.Context) {
 func FindPlayer(c *gin.Context) {
 	// Get model if exist
 	var player models.Player
-	if err := configs.DB.Where("id = ?", c.Query("id")).First(&player).Error; err != nil {
+	if err := configs.DB.Where("id = ?", c.Param("id")).First(&player).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
